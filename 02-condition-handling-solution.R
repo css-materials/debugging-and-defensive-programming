@@ -28,9 +28,9 @@ sqrt_sum <- function(x, y) {
 sqrt_sum(3,-6)
 
 # Write an iterative operation that safely calculates the maximum value
-# for every column in rcfss::gun_deaths
+# for every column in rcis::gun_deaths
 library(tidyverse)
-library(rcfss)
+library(rcis)
 
 gun_deaths
 
