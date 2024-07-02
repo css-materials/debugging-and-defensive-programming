@@ -1,9 +1,12 @@
+# CONDITION HANDLING
+
+
 # Calculate the square root of the sum of two numbers
 sqrt_sum <- function(x, y){
   sqrt(sum(x, y))
 }
-
 sqrt_sum(3, 6)
+
 
 ## Rewrite sqrt_sum() to produce a fatal error any time
 ## the sum of the two numbers is negative
@@ -13,25 +16,4 @@ sqrt_sum(3, 6)
 ## the sum of the two numbers is negative and produce a warning message
 ## explaining why this happened
 
-
-# Write an iterative operation that safely calculates the maximum value
-# for every column in rcis::gun_deaths
-library(tidyverse)
-library(rcis)
-
-gun_deaths
-
-## for loop
-
-
-## map
-
-
-# Perform the same operation as above, but this time replace
-# error messages with a missing value (`NA`)
-
-## for loop
-
-
-## map
 
