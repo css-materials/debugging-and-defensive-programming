@@ -1,0 +1,64 @@
+---
+title: "Debugging code: in-class exercises"
+output: html_document
+---
+
+Each code chuck in this documents includes some mistakes and currently does not work. Your task is to fix these mistakes to generate the desired output.
+
+
+## Load libraries and data
+
+Data come from the `babynames` package (http://hadley.github.io/babynames/). This package includes three datasets provided by the US government: `babynames`,  `applicants` ,  `lifetables`. We use only the first one for this exercise.
+
+If you are working on your local R Studio, you might need to install the libraries before loading them (if you are working on Workbench, simply run the code below to load the libraries, no installation required).
+```{r}
+library(tidyverse)
+library(babynames)
+```
+
+Check data (modify this code as you prefer)
+```{r}
+glimpse(babynames)
+str(babynames)
+```
+
+
+## QUESTION 1. The code below defines a function to show trends over time for a specific name using the `babynames` dataset. The code contains THREE errors. Find and fix them. Briefly describe why each of the errors occurred. Notice the `paste()` function in R is used to concatenate strings. 
+
+```{r}
+name_trend <- function(df, person_name) {
+  data %>% 
+    filter(name = {{ person_name }} ) %>%  
+    ggplot(mapping = aes(x = year, y = n, color = sex)) + 
+    geom_line() +
+    labs(
+      title = paste("Name:", person_name),
+      x = "Year",
+      y = "Number of births"
+    ) +
+    theme_minimal()
+}
+
+# call the function, try to call it with your name!
+name_trend(babynames, "Sabrina")
+```
+
+
+## QUESTION 2. The code below defines a function to create a bar plot with the total count of observations for a given variable (e.g., sex, year, etc.) in the dataset `babynames`. Specifically, it shows the total number of births by sex and the total number of births by year. The code contains THREE errors. Find and fix them. Briefly describe why each error occurred.
+
+```{r}
+summarize_and_plot <- function(df, column) {
+
+  summary_data <- df %>%
+    group_by(column) %>%
+    summarise(total_births = sum())
+  
+  ggplot(summary_data, aes(x = {{ column }}, y = total_births)) +  
+    geom_bar() +
+    scale_y_continuous(labels = scales::comma) +
+    theme_minimal()
+}
+
+# call the function with variable sex and year
+summarize_and_plot(babynames, sex)
+summarize_and_plot(babynames, year)
